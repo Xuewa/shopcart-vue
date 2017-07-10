@@ -24,15 +24,9 @@
 
 <script>
 export default {
-  props (){
+  props: {
     goods: {
-      type: Object,
-      default: {}
-    }
-  },
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+      type: Array
     }
   }
 }

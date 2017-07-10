@@ -1,16 +1,30 @@
 <template>
   <div id="app">
-    <shopcart></shopcart>
+    <shopcart :goods="goods"></shopcart>
   </div>
 </template>
 
 <script>
-import Shopcart from './components/Shopcart'
-
+import shopcart from './components/shopcart'
+const ERR_OK = 0
 export default {
-  name: 'app',
+  created () {
+    console.log(this)
+    this.$http.get('/api/goods').then((res) => {
+      let response = res.body
+      console.log(response)
+      if (response.errno === ERR_OK) {
+        this.goods = response.data
+      }
+    })
+  },
+  data () {
+    return {
+      goods: []
+    }
+  },
   components: {
-    shopcart: Shopcart
+    shopcart: shopcart
   }
 }
 </script>
